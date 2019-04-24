@@ -1,0 +1,9 @@
+#!/bin/bash
+# select an area of the screen to take a screenshot, save it in the
+# screenshot folder and copy it to the clipboard
+
+screenshotpath=~/pictures/screenshots/
+filename=$screenshotpath$(date +"%y-%m-%d_%H-%M-%S")-screenshot.png
+import -frame $filename
+xclip -selection clipboard -t image/png -i $filename
+notify-send 'Screenshot taken' "$filename has been saved to clipboard."

@@ -1,0 +1,4 @@
+#!/bin/bash
+# open the archlinux.org website in surf (e.g. to check for breaking changes)
+
+surf archlinux.org
