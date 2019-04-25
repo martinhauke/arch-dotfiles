@@ -1,0 +1,12 @@
+#!/bin/bash
+# Google something
+
+if [ "$#" -gt 0 ]
+then
+    QUERY="search?q=$1"
+    shift
+    for i in $*; do 
+        QUERY="$QUERY+$i"
+    done
+fi
+surf "https://www.google.com/$QUERY"

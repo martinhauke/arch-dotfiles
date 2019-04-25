@@ -1,0 +1,10 @@
+#!/bin/bash
+# Google the weather
+# If no argument is provided, assume "Dresden" as location.
+
+LOCATION=$1
+if [ "$#" = 0 ]
+then
+    LOCATION='dresden'
+fi
+surf "https://www.google.com/search?q=wetter+$LOCATION"
