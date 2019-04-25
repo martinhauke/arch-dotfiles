@@ -1,10 +1,11 @@
 #!/bin/bash
-# lock the screen and display a blurred version of the current screen
+# Lock the screen and display a blurred version of the current screen
 TMPBG=/tmp/screen.png
-RES=1366x768
- 
-ffmpeg -f x11grab -video_size $RES -y -i $DISPLAY -filter_complex "scale=w=iw/10:h=ih/10,scale=w=1366:h=768" -vframes 1 $TMPBG
-#ffmpeg -f x11grab -video_size $RES -y -i $DISPLAY -filter_complex "unsharp=luma_msize_x=7:luma_msize_y=7:luma_amount=2.5,scale=w=iw/10:h=ih/10,scale=w=1366:h=768,unsharp=luma_msize_x=7:luma_msize_y=7:luma_amount=2.5" -vframes 1 $TMPBG
-#ffmpeg -f x11grab -video_size $RES -y -i $DISPLAY -filter_complex "vibrance=intensity=2,scale=w=iw/10:h=ih/10,scale=w=1366:h=768,unsharp=luma_msize_x=7:luma_msize_y=7:luma_amount=2.5" -vframes 1 $TMPBG
-#ffmpeg -f x11grab -video_size $RES -y -i $DISPLAY -filter_complex "vibrance=intensity=2,scale=w=iw/10:h=ih/10,scale=w=1366:h=768,unsharp=luma_msize_x=7:luma_msize_y=7:luma_amount=2.5" -vframes 1 $TMPBG
-i3lock -i $TMPBG
+SCREENSHOTFILE=/tmp/lock-screenshot.png
+RES=$(xdpyinfo | awk '/dimensions/{print $2}')
+
+# Record screenshot and apply filters to using ffmpeg
+ffmpeg -f x11grab -video_size $RES -y -i $DISPLAY -filter_complex "scale=w=iw/10:h=ih/10,scale=w=iw*10:h=ih*10" -vframes 1 $TMPBG
+
+# Lock the screen
+i3lock -t -i $TMPBG
