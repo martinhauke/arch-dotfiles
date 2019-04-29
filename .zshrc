@@ -121,4 +121,20 @@ alias cs='cd ~/.scripts'
 alias vim='nvim'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
+# Use fzf to search within the workspace directory
 se() { du -a ~/workspace/september/* | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
+
+# Clone September projects into the workspace directory
+sclone() {
+    cws &&
+    git clone git@gitlab.com:septemberdd/$1.git
+;}
+
+# Easy git branch checkout
+chk() {
+  local branches branch
+  branches=$(git branch -a) &&
+  branch=$(echo "$branches" | fzf +s +m -e) &&
+  git checkout $(echo "$branch" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
+}
+
