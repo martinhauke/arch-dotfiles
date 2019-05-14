@@ -1,2 +1,2 @@
 eval $(ssh-agent)
-exec i3
+dbus-launch i3

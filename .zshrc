@@ -105,20 +105,19 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
-alias zconf="vim ~/.zshrc"
-alias iconf="vim ~/.config/i3/config"
-alias tconf="vim ~/.config/termite/config"
-alias vconf="vim ~/.vimrc"
+alias vim='nvim'
+alias zconf="$EDITOR ~/.zshrc"
+alias iconf="$EDITOR ~/.config/i3/config"
+alias tconf="$EDITOR ~/.config/termite/config"
+alias vconf="$EDITOR ~/.vimrc"
 alias pacin="sudo pacman -S"
 alias pacupg="sudo pacman -Syu"
 alias pacclean="sudo pacman -Rns $(pacman -Qtdq)"
 alias mirrorupdate="sudo ~/bin/rankmirrors.sh"
 alias please='sudo $(fc -ln -1)'
-#alias dpswa='xrandr --output DP1 --mode 1920x1200 --right-of LVDS1'
 alias dpswa='xrandr --output DP2 --mode 1920x1200 --right-of LVDS1 --rotate left'
 alias cws='cd ~/workspace/september'
 alias cs='cd ~/.scripts'
-alias vim='nvim'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
 # Use fzf to search within the workspace directory

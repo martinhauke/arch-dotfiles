@@ -1,10 +1,9 @@
 #!/bin/bash
-# Lock the screen and display a blurred version of the current screen
+# Lock the screen and display a blurred version of it
 TMPBG=/tmp/screen.png
-SCREENSHOTFILE=/tmp/lock-screenshot.png
 RES=$(xdpyinfo | awk '/dimensions/{print $2}')
 
-# Record screenshot and apply filters to using ffmpeg
+# Record screenshot and apply filters to it using ffmpeg
 ffmpeg -f x11grab -video_size $RES -y -i $DISPLAY -filter_complex "scale=w=iw/10:h=ih/10,scale=w=iw*10:h=ih*10" -vframes 1 $TMPBG
 
 # Lock the screen
